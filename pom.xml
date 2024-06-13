@@ -19,7 +19,7 @@
     <name>tbt_Blog</name>
     <description>tbt_Blog</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -52,10 +52,4 @@
             <version>5.7.17</version>
         </dependency>
     </dependencies>
-
-
-
-
-
-
 </project>
