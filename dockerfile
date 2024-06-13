@@ -1,1 +1,1 @@
-FROM openjdk:8-jdk-alpine as runnerWORKDIR /appCOPY Blog-server/target/main.jar ./app.jarCMD ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005", "-jar", "/app/app.jar"]
+FROM openjdk:8-jdk-alpineWORKDIR /appCOPY Blog-server/target/main.jar ./app.jarCMD ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005", "-jar", "/app/app.jar"]
