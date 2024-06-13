@@ -9,7 +9,6 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest  # 在 Ubuntu 最新版本上运行此工作流程
 
-    uses:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
