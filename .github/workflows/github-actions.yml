@@ -32,11 +32,7 @@ jobs:
         run: docker login --username=${{ secrets.ALIYUN_REGISTRY_USERNAME }} --password=${{ secrets.ALIYUN_REGISTRY_PASSWORD }} registry.cn-hangzhou.aliyuncs.com
         # 登录阿里云 Docker 镜像仓库，使用 GitHub secrets 中的用户名和密码
 
-      - name: Build and push image
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          context: .  # Dockerfile 所在的上下文路径，当前目录为根目录
-          file: ./Dockerfile  # Dockerfile 的路径，相对于 context
-          push: true
-          tags: registry.cn-hangzhou.aliyuncs.com/rhwu/hub:blog
+      - name: Build and push Docker image
+        run: docker buildx build --file ./Dockerfile --tag registry.cn-hangzhou.aliyuncs.com/rhwu/hub:blog --push .
+        env:
+          DOCKER_BUILDKIT: 1
