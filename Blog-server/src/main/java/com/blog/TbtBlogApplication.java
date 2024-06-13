@@ -7,5 +7,4 @@ public class TbtBlogApplication {
     public static void main(String[] args) {
        SpringApplication.run(TbtBlogApplication.class, args);
     }
-
 }
