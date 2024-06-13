@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `type` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Article_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 导出  表 blog.comment 结构
 CREATE TABLE IF NOT EXISTS `comment` (
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `message` (
   `img` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `message_id_uindex` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- 导出  表 blog.music 结构

@@ -29,4 +29,9 @@ public class MusicController {
         return Result.success(iMusicService.getMusic());
 
     }
+
+    @GetMapping("helloCiCd")
+    public Result<String>  hello(){
+        return Result.success("helloCicd");
+    }
 }
