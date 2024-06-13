@@ -1,0 +1,1 @@
+# Use a base image that contains Java runtimeFROM openjdk:8-jdk-alpine# Set the working directory in the containerWORKDIR /app# Copy the executable JAR file to the working directoryCOPY target/main.jar app.jar# Expose the port the application runs onEXPOSE 8080# Command to run the applicationENTRYPOINT ["java", "-jar", "app.jar"]
