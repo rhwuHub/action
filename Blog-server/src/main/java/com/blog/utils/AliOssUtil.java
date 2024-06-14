@@ -27,6 +27,5 @@ public class AliOssUtil {
         PutObjectResult res = ossCLient.putObject(putObjectRequest);
         url="http://"+BUCKET_NAME+'.'+ENDPOINT.substring(ENDPOINT.lastIndexOf("/")+1)+"/"+objectName;
             return url;
-
     }
 }
