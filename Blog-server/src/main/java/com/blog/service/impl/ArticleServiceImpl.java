@@ -58,7 +58,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
            throw new IllegalArgumentException("内容或标题不能为空");
         }
 //        数据处理
-        article.setCreateUser("金屋藏小猪");
+        article.setCreateUser("今非昔比");
         article.setCreateTime(LocalDateTime.now());
 
 //        添加数据库
