@@ -19,13 +19,6 @@
             <version>2.15.1</version>
         </dependency>
         <!--openoffice-->
-<!--        <dependency>-->
-<!--            <groupId>com.artofsolving</groupId>-->
-<!--            <artifactId>jodconverter</artifactId>-->
-<!--            <version>2.2.2</version>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/src/main/resources/lib/jodconverter-2.2.2.jar</systemPath>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>com.artofsolving</groupId>
             <artifactId>jodconverter</artifactId>
