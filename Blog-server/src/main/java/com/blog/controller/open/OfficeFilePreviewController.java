@@ -61,7 +61,7 @@ public class OfficeFilePreviewController {
     }
 
     @GetMapping("allFiles")
-    public List<FileUpload> fileUpload(){
+    public List<FileUpload> allFiles(){
         List<FileUpload> list = fileUploadService.list();
         return  list;
     }

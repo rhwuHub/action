@@ -10,11 +10,11 @@ spring:
       max-request-size: 500MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
-    username: ...
-    password: ...
-#    username: root
-#    password: 123456
+    url: jdbc:mysql://139.9.220.169:3307/blog?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+#    username: ...
+#    password: ...
+    username: root
+    password: 123456
     type: com.zaxxer.hikari.HikariDataSource
   mvc:
    static-path-pattern:  /**
