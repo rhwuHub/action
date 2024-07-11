@@ -33,13 +33,12 @@ public class OfficeFilePreviewController {
         // 获取文件类型
         String suffix = url.substring(url.lastIndexOf(".") + 1);
         log.info("suffix {}", suffix);
-
-        if (suffix.length() == 0) {
-            throw new Exception("文件格式不正确");
+        if (suffix.isEmpty()) {
+            throw new RuntimeException("文件格式不正确");
         }
         if (!suffix.equals("txt") && !suffix.equals("doc") && !suffix.equals("docx") && !suffix.equals("xls")
                 && !suffix.equals("xlsx") && !suffix.equals("ppt") && !suffix.equals("pptx") && !suffix.equals("pdf")) {
-            throw new Exception("文件格式不支持预览");
+            throw new RuntimeException("文件格式不支持预览");
         }
         InputStream in = FileConvertUtil.convertNetFile(url, suffix);
         OutputStream outputStream = response.getOutputStream();
@@ -55,15 +54,14 @@ public class OfficeFilePreviewController {
     }
 
     @PostMapping("saveFile")
-    public void saveFile(@RequestBody @Validated FileUploadReq requestBody) throws Exception {
+    public void saveFile(@RequestBody @Validated FileUploadReq requestBody) {
         FileUpload build = FileUpload.builder().fileName(requestBody.getFileName()).fileQrcode(requestBody.getFileQrcode()).fileUrl(requestBody.getFileUrl()).build();
         fileUploadService.save(build);
     }
 
     @GetMapping("allFiles")
     public List<FileUpload> allFiles(){
-        List<FileUpload> list = fileUploadService.list();
-        return  list;
+        return fileUploadService.list();
     }
 }
 

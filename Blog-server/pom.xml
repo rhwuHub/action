@@ -2,14 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>tbt_Blog</artifactId>
-        <groupId>com.example</groupId>
+        <groupId>com.rhwu</groupId>
+        <artifactId>rhwu_Blog</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <modelVersion>4.0.0</modelVersion>
-
     <artifactId>Blog-server</artifactId>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
@@ -39,12 +37,10 @@
             <artifactId>unoil</artifactId>
             <version>4.1.2</version>
         </dependency>
-
         <dependency>
-            <groupId>com.blog</groupId>
+            <groupId>com.rhwu</groupId>
             <artifactId>Blog-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
@@ -80,10 +76,6 @@
     <build>
         <finalName>blog</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
