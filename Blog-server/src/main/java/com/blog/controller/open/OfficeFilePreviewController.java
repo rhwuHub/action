@@ -63,5 +63,10 @@ public class OfficeFilePreviewController {
     public List<FileUpload> allFiles(){
         return fileUploadService.list();
     }
+
+    @DeleteMapping("deleteFile")
+    public void deleteFile(@RequestParam Long id){
+        fileUploadService.removeById(id);
+    }
 }
 
