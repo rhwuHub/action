@@ -1,13 +1,18 @@
 package com.blog.controller.open;
 
+import com.blog.domain.entity.FileUpload;
+import com.blog.domain.request.FileUploadReq;
+import com.blog.service.FileUploadService;
 import com.blog.utils.FileConvertUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * office文件在线预览接口
@@ -16,6 +21,9 @@ import java.io.OutputStream;
 @RequestMapping("/api/file")
 @Slf4j
 public class OfficeFilePreviewController {
+
+    @Resource
+    private FileUploadService fileUploadService;
   
     /**
      * 系统文件在线预览接口
@@ -30,7 +38,7 @@ public class OfficeFilePreviewController {
             throw new Exception("文件格式不正确");
         }
         if (!suffix.equals("txt") && !suffix.equals("doc") && !suffix.equals("docx") && !suffix.equals("xls")
-                && !suffix.equals("xlsx") && !suffix.equals("ppt") && !suffix.equals("pptx")) {
+                && !suffix.equals("xlsx") && !suffix.equals("ppt") && !suffix.equals("pptx") && !suffix.equals("pdf")) {
             throw new Exception("文件格式不支持预览");
         }
         InputStream in = FileConvertUtil.convertNetFile(url, suffix);
@@ -44,6 +52,18 @@ public class OfficeFilePreviewController {
         outputStream.flush();
         outputStream.close();
         in.close();
+    }
+
+    @PostMapping("saveFile")
+    public void saveFile(@RequestBody @Validated FileUploadReq requestBody) throws Exception {
+        FileUpload build = FileUpload.builder().fileName(requestBody.getFileName()).fileQrcode(requestBody.getFileQrcode()).fileUrl(requestBody.getFileUrl()).build();
+        fileUploadService.save(build);
+    }
+
+    @GetMapping("allFiles")
+    public List<FileUpload> fileUpload(){
+        List<FileUpload> list = fileUploadService.list();
+        return  list;
     }
 }
 

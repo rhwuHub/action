@@ -96,3 +96,13 @@ CREATE TABLE IF NOT EXISTS `type` (
   UNIQUE KEY `type_name_uindex` (`name`),
   UNIQUE KEY `type_id_uindex` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 上传文件
+CREATE TABLE IF NOT EXISTS `file_upload` (
+    `id` int primary key NOT NULL AUTO_INCREMENT,
+    `file_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+    `file_url` varchar(100) not null comment '访问地址',
+    `file_qrcode` text not null comment '访问地址的二维码base64',
+    `creation_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间'
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
