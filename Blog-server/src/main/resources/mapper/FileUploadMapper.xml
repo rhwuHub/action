@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.FileUploadMapper">
+
+    <resultMap id="BaseResultMap" type="com.blog.domain.entity.FileUpload">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="fileName" column="file_name" jdbcType="VARCHAR"/>
+            <result property="fileUrl" column="file_url" jdbcType="VARCHAR"/>
+            <result property="fileQrcode" column="file_qrcode" jdbcType="VARCHAR"/>
+            <result property="creationTime" column="creation_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,file_name,file_url,
+        file_qrcode,creation_time,update_time
+    </sql>
+</mapper>
