@@ -15,7 +15,7 @@ public class EssayServiceImpl extends ServiceImpl<EssayMapper, Essay> implements
     @Override
     public void addEssay(Essay essay) {
         essay.setCreateTime(LocalDateTime.now());
-this.save(essay);
+        this.save(essay);
     }
 
     @Override

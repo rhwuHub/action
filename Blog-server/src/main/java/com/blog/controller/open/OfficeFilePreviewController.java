@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
@@ -41,16 +42,29 @@ public class OfficeFilePreviewController {
             throw new RuntimeException("文件格式不支持预览");
         }
         InputStream in = FileConvertUtil.convertNetFile(url, suffix);
-        OutputStream outputStream = response.getOutputStream();
-        // 创建存放文件内容的byte[]数组
-        byte[] buff = new byte[1024];
-        int n;
-        while ((n = in.read(buff)) != -1) {
-            outputStream.write(buff, 0, n);
+        if (in == null) {
+            // 处理无法获取输入流的情况
+            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
         }
-        outputStream.flush();
-        outputStream.close();
-        in.close();
+        try (OutputStream outputStream = response.getOutputStream()) {
+            byte[] buff = new byte[8192]; // 增加缓冲区大小到8KB
+            int n;
+            while ((n = in.read(buff)) != -1) {
+                outputStream.write(buff, 0, n);
+            }
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @PostMapping("saveFile")
