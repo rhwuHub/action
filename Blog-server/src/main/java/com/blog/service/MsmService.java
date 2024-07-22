@@ -1,0 +1,1 @@
+package com.blog.service;public interface MsmService {    //发送邮箱验证码的方法    boolean sendEmail(String email,String code);}

@@ -25,6 +25,17 @@ spring:
       com.itheima: debug
     pattern:
       dateformat: HH:mm:ss
+  #  邮箱吧验证码配置
+  mail:
+    host: smtp.qq.com
+    username: 2300889886@qq.com
+    password: twigvjnfoknqebic
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
 mybatis-plus:
   #mapper配置文件
   mapper-locations: classpath:mapper/*.xml
@@ -39,4 +50,6 @@ mybatis-plus:
 #  # xml扫描，多个目录用逗号或者分号分隔(告诉 Mapper 所对应的 XML 文件位置)
 #  mapper-locations: classpath:mapper/*.xml
 
-
+# 邮箱验证码配置
+email:
+  from: 2300889886@qq.com
