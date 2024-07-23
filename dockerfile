@@ -1,11 +1,12 @@
-# 使用 CentOS 8 作为基础镜像
-FROM centos:8 AS builder
-# 安装必要的工具和库
-RUN dnf install -y \
-    java-17-openjdk-devel \
+# 使用 Ubuntu 作为基础镜像
+FROM ubuntu:20.04 AS builder
+
+# 更新系统和安装必要的工具和库
+RUN apt-get update && apt-get install -y \
+    openjdk-17-jdk \
     maven \
-    libstdc++ \
-    && dnf clean all
+    libstdc++6 \
+    && apt-get clean
 WORKDIR /tmp
 COPY . /tmp
 RUN mvn clean package -Dmaven.test.skip=true
