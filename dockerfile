@@ -1,6 +1,6 @@
 FROM maven:3.8.4-openjdk-17-slim AS builder
 # 安装 C++ 标准库
-RUN apt-get update && apt-get install -y libstdc++-4.8.5-44.el7.i868
+RUN apt-get update && apt-get install -y libstdc++6
 WORKDIR /tmp
 COPY . /tmp
 RUN mvn clean package -Dmaven.test.skip=true
