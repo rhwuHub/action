@@ -1,6 +1,6 @@
-FROM maven:3.8.4-openjdk-17-alpine AS builder
+FROM maven:3.8.4-openjdk-17-slim AS builder
 # 安装 C++ 标准库
-RUN apk add --no-cache bash g++ libstdc++
+RUN apt-get update && apt-get install -y libstdc++
 WORKDIR /tmp
 COPY . /tmp
 RUN mvn clean package -Dmaven.test.skip=true
