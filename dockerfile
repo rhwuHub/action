@@ -1,10 +1,11 @@
-FROM maven:3.8.4-openjdk-17 AS builder
-# 安装 curl 工具以下载 RPM 包
-RUN microdnf install -y curl
-# 下载 libstdc++6 的 RPM 包
-RUN curl -O http://mirror.centos.org/centos/8/BaseOS/x86_64/os/Packages/libstdc++-8.3.1-5.1.el8.x86_64.rpm
-# 安装 libstdc++6 的 RPM 包
-RUN rpm -ivh libstdc++-8.3.1-5.1.el8.x86_64.rpm
+# 使用 CentOS 8 作为基础镜像
+FROM centos:8
+# 安装必要的工具和库
+RUN dnf install -y \
+    java-17-openjdk-devel \
+    maven \
+    libstdc++ \
+    && dnf clean all
 WORKDIR /tmp
 COPY . /tmp
 RUN mvn clean package -Dmaven.test.skip=true
