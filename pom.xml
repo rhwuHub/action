@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.12</version>
+        <version>3.1.5</version>
         <relativePath/>
     </parent>
     <groupId>com.rhwu</groupId>
@@ -19,8 +19,11 @@
     <name>rhwu_Blog</name>
     <description>rhwu_Blog</description>
     <properties>
-        <java.version>8</java.version>
+        <java.version>17</java.version>
+<!--        <kotlin.version>1.5.10</kotlin.version>-->
+        <kotlin.version>1.6.21</kotlin.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

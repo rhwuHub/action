@@ -1,15 +1,12 @@
 package com.blog.controller.admin;
 
 import cn.hutool.core.lang.UUID;
-import com.blog.utils.AliOssUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 

@@ -4,12 +4,11 @@ import com.blog.domain.entity.FileUpload;
 import com.blog.domain.request.FileUploadReq;
 import com.blog.service.FileUploadService;
 import com.blog.utils.FileConvertUtil;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

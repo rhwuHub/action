@@ -10,6 +10,23 @@
     </parent>
     <artifactId>Blog-server</artifactId>
     <dependencies>
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>qsign</artifactId>
+            <version>1.2.1-beta-dev-d62ddce</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/qsign-1.2.1-beta-dev-d62ddce.mirai2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.mamoe</groupId>
+            <artifactId>mirai-core-jvm</artifactId>
+            <version>2.16.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,13 +89,27 @@
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.3</version>
         </dependency>
+        <!-- Maven: pom.xml -->
     </dependencies>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
+
     <build>
+
+        <resources>
+            <resource>
+                <!-- 把 lib/ 目录下的第三方 jar 包打进程序中 -->
+                <directory>src/main/resources/lib</directory>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <finalName>blog</finalName>
         <plugins>
             <plugin>
@@ -87,12 +118,38 @@
                 <configuration>
                     <!-- 指定该Main Class为全局的唯一入口 -->
                     <mainClass>com.blog.TbtBlogApplication</mainClass>
+                    <!--解决本地jar包打不进jar的问题-->
+                    <includeSystemScope>true</includeSystemScope>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/resources/lib</directory>
+                                    <includes>
+                                        <include>*.jar</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

@@ -8,13 +8,10 @@ import com.blog.domain.entity.Label;
 import com.blog.domain.entity.LabelArticle;
 import com.blog.domain.query.Query;
 import com.blog.mapper.LabelMapper;
-
 import com.blog.service.ILabelService;
 import com.blog.service.ILabelArticleService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;

@@ -9,9 +9,9 @@ import com.blog.domain.entity.LabelArticle;
 import com.blog.service.IArticleService;
 import com.blog.service.ILabelArticleService;
 import com.blog.service.ILabelService;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
 
