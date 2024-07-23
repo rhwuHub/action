@@ -1,5 +1,5 @@
 # 使用 CentOS 8 作为基础镜像
-FROM centos:8
+FROM centos:8 AS builder
 # 安装必要的工具和库
 RUN dnf install -y \
     java-17-openjdk-devel \
