@@ -1,12 +1,12 @@
-# 使用 Ubuntu 作为基础镜像
-FROM ubuntu:20.04 AS builder
-
-# 更新系统和安装必要的工具和库
-RUN apt-get update && apt-get install -y \
-    openjdk-17-jdk \
-    maven \
-    libstdc++6 \
-    && apt-get clean
+## 使用 Ubuntu 作为基础镜像
+#FROM ubuntu:20.04 AS builder
+## 更新系统和安装必要的工具和库
+#RUN apt-get update && apt-get install -y \
+#    openjdk-17-jdk \
+#    maven \
+#    libstdc++6 \
+#    && apt-get clean
+FROM maven:3.8.4-openjdk-17 AS builder
 WORKDIR /tmp
 COPY . /tmp
 RUN mvn clean package -Dmaven.test.skip=true
