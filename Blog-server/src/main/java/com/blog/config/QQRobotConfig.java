@@ -1,6 +1,7 @@
 package com.blog.config;
 
-import com.blog.utils.JavaMain;
+import com.blog.utils.BotUtil;
+import jakarta.annotation.Resource;
 import net.mamoe.mirai.Bot;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -13,12 +14,16 @@ import top.mrxiaom.overflow.BotBuilder;
  */
 @Component
 public class QQRobotConfig {
+
+    @Resource
+    private BotUtil botUtil;
+
     @Bean
     public Bot initBot(){
         Bot bot = BotBuilder.positive("ws://139.9.220.169:3001")
                 .token("114514")
                 .connect();
-        JavaMain.afterLogin(bot);
+        botUtil.afterLogin(bot);
         return bot;
     }
 
