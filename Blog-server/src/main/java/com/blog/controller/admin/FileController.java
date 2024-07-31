@@ -54,7 +54,7 @@ public class FileController {
             fileName = originalName;
         }
         if (exitNumber > 0){
-            fileName = fileName + exitNumber + suffix;
+            fileName = fileName +"("+exitNumber+")" + suffix;
         }
         // 创建目录
         File dir = new File(uploadPath);

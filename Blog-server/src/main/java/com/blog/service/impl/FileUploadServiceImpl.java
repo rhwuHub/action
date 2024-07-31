@@ -18,7 +18,7 @@ public class FileUploadServiceImpl extends ServiceImpl<FileUploadMapper, FileUpl
 
     @Override
     public Long queryByFileName(String originalName) {
-        return baseMapper.selectCount(Wrappers.<FileUpload>lambdaQuery().likeLeft(FileUpload::getFileName,originalName));
+        return baseMapper.selectCount(Wrappers.<FileUpload>lambdaQuery().likeRight(FileUpload::getFileName,originalName));
     }
 }
 
