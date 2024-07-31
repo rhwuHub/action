@@ -7,6 +7,7 @@ import com.blog.utils.FileConvertUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.Assert;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
@@ -68,7 +69,10 @@ public class OfficeFilePreviewController {
 
     @PostMapping("saveFile")
     public void saveFile(@RequestBody @Validated FileUploadReq requestBody) {
-        FileUpload build = FileUpload.builder().fileName(requestBody.getFileName()).fileQrcode(requestBody.getFileQrcode()).fileUrl(requestBody.getFileUrl()).build();
+        String fileUrl = requestBody.getFileUrl();
+        // 从最后一个斜杠之后的位置开始截取字符串
+        String fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+        FileUpload build = FileUpload.builder().fileName(fileName).fileQrcode(requestBody.getFileQrcode()).fileUrl(fileUrl).build();
         fileUploadService.save(build);
     }
 
