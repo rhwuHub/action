@@ -1,6 +1,8 @@
 package com.blog.controller.admin;
 
 import cn.hutool.core.lang.UUID;
+import com.blog.service.FileUploadService;
+import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +32,9 @@ public class FileController {
     @Value("${server-Url:http://localhost:9091}")
     private String serverUrl;
 
+    @Resource
+    private FileUploadService fileUploadService;
+
     @PostMapping("/addFile")
     public String upload(@RequestParam("file") MultipartFile file) throws Exception {
         // return AliOssUtil.uploadFile(File.getOriginalFilename(),File.getInputStream());
@@ -42,14 +47,20 @@ public class FileController {
         Assert.notNull(originalName, "文件名不能为空");
         // 获取文件后缀
         String suffix = originalName.substring(originalName.lastIndexOf('.'));
-        // 生成唯一文件名
-        String fileName = UUID.randomUUID() + suffix;
+        int lastDotIndex = originalName.lastIndexOf('.');
+        String fileName = lastDotIndex > 0 ? originalName.substring(0, lastDotIndex) : originalName;
+        Long exitNumber =  fileUploadService.queryByFileName(fileName);
+        if (exitNumber == 0){
+            fileName = originalName;
+        }
+        if (exitNumber > 0){
+            fileName = fileName + exitNumber + suffix;
+        }
         // 创建目录
         File dir = new File(uploadPath);
         if (!dir.exists()) {
             dir.mkdirs();
         }
-
         // 保存文件
         File uploadFile = new File(dir, fileName);
         try {

@@ -8,7 +8,9 @@
         <artifactId>rhwu_Blog</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <artifactId>Blog-server</artifactId>
+
     <dependencies>
         <!-- Spring Boot Starter Cache -->
         <dependency>

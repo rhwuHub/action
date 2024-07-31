@@ -10,4 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface FileUploadService extends IService<FileUpload> {
 
+    Long queryByFileName(String originalName);
 }

@@ -1,5 +1,6 @@
 package com.blog.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.blog.domain.entity.FileUpload;
 import com.blog.service.FileUploadService;
@@ -15,6 +16,10 @@ import org.springframework.stereotype.Service;
 public class FileUploadServiceImpl extends ServiceImpl<FileUploadMapper, FileUpload>
     implements FileUploadService{
 
+    @Override
+    public Long queryByFileName(String originalName) {
+        return baseMapper.selectCount(Wrappers.<FileUpload>lambdaQuery().likeLeft(FileUpload::getFileName,originalName));
+    }
 }
 
 
